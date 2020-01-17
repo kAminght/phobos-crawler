@@ -8,6 +8,5 @@ package cat.kaminght.crawler;
  */
 public class IoMain {
     public static void main(String[] args) {
-    
     }
 }

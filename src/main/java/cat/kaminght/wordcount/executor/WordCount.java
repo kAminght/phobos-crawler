@@ -1,9 +1,7 @@
 package cat.kaminght.wordcount.executor;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +24,7 @@ public class WordCount {
     }
     
     public Map<String, Integer> count(File file) throws FileNotFoundException, ExecutionException, InterruptedException {
-        BufferedReader reader = new BufferedReader(new FileReader(file));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8));
         List<Future<Map<String, Integer>>> futures = new ArrayList<>();
         for (int i = 0; i < threadNum; i++) {
             Future<Map<String, Integer>> future = threadPool.submit(new Callable<Map<String, Integer>>() {
